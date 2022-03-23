@@ -2,6 +2,7 @@
   <p class="todo-item" v-bind:class="{'is-complete':todo.completed}">
     <input type="checkbox" v-on:change="handleCheck" :checked="todo.completed">
     {{ todo.title }}
+    <button class="delete">Delete</button>
   </p>
 </template>
 
@@ -31,5 +32,8 @@ export default {
 
 .delete {
   background-color: #f00;
+  color: #fff;
+  border: none;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 </style>
