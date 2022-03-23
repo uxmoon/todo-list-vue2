@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import TodosList from "./components/TodosList"
+import TodosList from "./components/TodosList";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    TodosList
+    TodosList,
   },
   data() {
     return {
@@ -29,10 +29,10 @@ export default {
           title: "Todo 3",
           completed: false,
         },
-      ]
-    }
-  }
-}
+      ],
+    };
+  },
+};
 </script>
 
 <style>
@@ -58,8 +58,8 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
@@ -73,6 +73,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  background-color: #efefef;
 }
 
 /* A elements that don't have a class get default styles */
@@ -98,9 +99,9 @@ select {
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-   scroll-behavior: auto;
+    scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -110,5 +111,4 @@ select {
     scroll-behavior: auto !important;
   }
 }
-
 </style>
