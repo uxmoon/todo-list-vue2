@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    {{ msg }}
+    <TodosList />
   </div>
 </template>
 
 <script>
-
+import TodosList from "./components/TodosList"
 export default {
   name: 'App',
   components: {
-    
+    TodosList
   },
   data() {
     return {
