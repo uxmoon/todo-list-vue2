@@ -1,11 +1,19 @@
 <template>
-  <p class="todo-item" v-bind:class="{'is-complete':todo.completed}">{{ todo.title }}</p>
+  <p class="todo-item" v-bind:class="{'is-complete':todo.completed}">
+    <input type="checkbox" v-on:change="handleCheck">
+    {{ todo.title }}
+  </p>
 </template>
 
 <script>
 export default {
   name: "TodosItem",
   props: ["todo"],
+  methods: {
+    handleCheck() {
+      console.log('click');
+    }
+  }
 };
 </script>
 
