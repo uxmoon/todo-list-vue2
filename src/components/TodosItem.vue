@@ -11,7 +11,7 @@ export default {
   props: ["todo"],
   methods: {
     handleCheck() {
-      console.log('click');
+      this.todo.completed = !this.todo.completed
     }
   }
 };
