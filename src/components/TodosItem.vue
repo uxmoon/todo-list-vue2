@@ -1,6 +1,6 @@
 <template>
   <p class="todo-item" v-bind:class="{'is-complete':todo.completed}">
-    <input type="checkbox" v-on:change="handleCheck">
+    <input type="checkbox" v-on:change="handleCheck" :checked="todo.completed">
     {{ todo.title }}
   </p>
 </template>
@@ -11,6 +11,7 @@ export default {
   props: ["todo"],
   methods: {
     handleCheck() {
+      // eslint-disable-next-line vue/no-mutating-props
       this.todo.completed = !this.todo.completed
     }
   }
