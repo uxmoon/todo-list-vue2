@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
     <HeaderApp />
-    <TodosAdd />
+    <TodosAdd v-on:add-todo="handleSubmit" />
     <TodosList v-bind:todos="todos" v-on:del-todo="handleDelete" />
   </div>
 </template>
@@ -42,6 +42,9 @@ export default {
   methods: {
     handleDelete(id) {
       this.todos = this.todos.filter((todo) => todo.id !== id)
+    },
+    handleSubmit(newTodo) {
+      this.todos = [...this.todos, newTodo]
     }
   }
 };
