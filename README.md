@@ -4,7 +4,9 @@
 
 Todo list app based on [Vue JS Crash Course (2019)](https://youtu.be/Wy9q22isx3U) by [Traversy Media](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA)
 
-**Goal** I want to explore and learn VueJs and how it compares to React. 
+## Goal
+
+I want to explore and learn [VueJs](https://vuejs.org/) JavaScript framework and how it compares to React. 
 
 How to **create components**, pass data from child to parent component, **make http requests** with axios (get, post, delete) and **define routes** with Vue router.
 
