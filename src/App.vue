@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <HeaderApp />
     <TodosAdd />
     <TodosList v-bind:todos="todos" v-on:del-todo="handleDelete" />
@@ -122,5 +122,11 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+.container {
+  width: 100%;
+  max-width: 37.5rem;
+  margin-inline: auto;
 }
 </style>
