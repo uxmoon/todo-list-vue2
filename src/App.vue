@@ -42,7 +42,13 @@ export default {
   },
   methods: {
     handleDelete(id) {
-      this.todos = this.todos.filter((todo) => todo.id !== id);
+      // add the 'id' at the end
+      axios
+        .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then(() => (this.todos = this.todos.filter((todo) => todo.id !== id)))
+        .catch((err) => console.log(err));
+
+      // this.todos = this.todos.filter((todo) => todo.id !== id);
     },
     handleAdd(newTodo) {
       // jsonplaceholder gives you an id
