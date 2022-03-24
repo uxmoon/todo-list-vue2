@@ -1,6 +1,10 @@
 <template>
   <header class="header">
     <h1>Todo List</h1>
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>    
   </header>
 </template>
 
@@ -20,6 +24,10 @@ export default {
 
   .header a {
     color: #fff;
-    padding-right: 0.5rem;
+    text-decoration: none;
+  }
+
+  .header a:hover {
+    text-decoration: underline;
   }
 </style>
