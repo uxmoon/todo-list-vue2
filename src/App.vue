@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import TodosList from "./components/TodosList";
 import TodosAdd from "./components/TodosAdd";
 import HeaderApp from "./components/layout/Header.vue"
@@ -21,21 +22,21 @@ export default {
   data() {
     return {
       todos: [
-        {
-          id: 1,
-          title: "Todo 1",
-          completed: true,
-        },
-        {
-          id: 2,
-          title: "Todo 2",
-          completed: false,
-        },
-        {
-          id: 3,
-          title: "Todo 3",
-          completed: false,
-        },
+        // {
+        //   id: 1,
+        //   title: "Todo 1",
+        //   completed: true,
+        // },
+        // {
+        //   id: 2,
+        //   title: "Todo 2",
+        //   completed: false,
+        // },
+        // {
+        //   id: 3,
+        //   title: "Todo 3",
+        //   completed: false,
+        // },
       ],
     };
   },
@@ -46,6 +47,12 @@ export default {
     handleSubmit(newTodo) {
       this.todos = [...this.todos, newTodo]
     }
+  },
+  // lifecycle hook
+  created() {
+    axios.get("https://jsonplaceholder.typicode.com/todos")
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
   }
 };
 </script>
