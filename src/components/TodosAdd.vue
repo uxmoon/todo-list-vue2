@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import uuid from "uuid";
 export default {
   name: "TodosAdd",
   data() {
@@ -23,7 +24,14 @@ export default {
   methods: {
     handleSubmit(event) {
       event.preventDefault();
-      console.log('submit');
+      // build new todo object
+      const newTodo = {
+        id: uuid.v4,
+        title: this.title,
+        completed: false,
+      };
+      // Send up to parent component
+      this.$emit("add-todo", newTodo);
     },
   },
 };
