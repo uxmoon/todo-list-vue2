@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="container">
-    <HeaderApp />
     <TodosAdd v-on:add-todo="handleAdd" />
     <TodosList v-bind:todos="todos" v-on:del-todo="handleDelete" />
   </div>
@@ -10,14 +9,12 @@
 import axios from "axios";
 import TodosList from "../components/TodosList";
 import TodosAdd from "../components/TodosAdd";
-import HeaderApp from "../components/layout/Header.vue";
 
 export default {
   name: "HomeView",
   components: {
     TodosList,
     TodosAdd,
-    HeaderApp,
   },
   data() {
     return {
