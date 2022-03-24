@@ -1,18 +1,160 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <HeaderApp />
+    <TodosAdd v-on:add-todo="handleAdd" />
+    <TodosList v-bind:todos="todos" v-on:del-todo="handleDelete" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import axios from "axios";
+import TodosList from "../components/TodosList";
+import TodosAdd from "../components/TodosAdd";
+import HeaderApp from "../components/layout/Header.vue";
 
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   components: {
-    HelloWorld
+    TodosList,
+    TodosAdd,
+    HeaderApp,
+  },
+  data() {
+    return {
+      todos: [
+        // {
+        //   id: 1,
+        //   title: "Todo 1",
+        //   completed: true,
+        // },
+        // {
+        //   id: 2,
+        //   title: "Todo 2",
+        //   completed: false,
+        // },
+        // {
+        //   id: 3,
+        //   title: "Todo 3",
+        //   completed: false,
+        // },
+      ],
+    };
+  },
+  methods: {
+    handleDelete(id) {
+      // add the 'id' at the end
+      axios
+        .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then(() => (this.todos = this.todos.filter((todo) => todo.id !== id)))
+        .catch((err) => console.log(err));
+
+      // this.todos = this.todos.filter((todo) => todo.id !== id);
+    },
+    handleAdd(newTodo) {
+      // jsonplaceholder gives you an id
+      const { title, completed } = newTodo;
+      // post request and send data
+      axios
+        .post("https://jsonplaceholder.typicode.com/todos", {
+          title,
+          completed,
+        })
+        .then((res) => (this.todos = [...this.todos, res.data]))
+        .catch((err) => console.log(err));
+      // this.todos = [...this.todos, newTodo]
+    },
+  },
+  // lifecycle hook
+  created() {
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos?_limit=4")
+      // .then(res => console.log(res))
+      .then((res) => (this.todos = res.data))
+      .catch((err) => console.log(err));
+  },
+};
+</script>
+
+<style>
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: #efefef;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
-</script>
+
+.container {
+  width: 100%;
+  max-width: 37.5rem;
+  margin-inline: auto;
+}
+</style>
