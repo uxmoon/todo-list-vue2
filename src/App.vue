@@ -50,8 +50,9 @@ export default {
   },
   // lifecycle hook
   created() {
-    axios.get("https://jsonplaceholder.typicode.com/todos")
-    .then(res => console.log(res))
+    axios.get("https://jsonplaceholder.typicode.com/todos?_limit=4")
+    // .then(res => console.log(res))
+    .then(res => this.todos = res.data)
     .catch(err => console.log(err))
   }
 };
