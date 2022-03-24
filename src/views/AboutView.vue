@@ -1,5 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h2>About page</h2>
+    <p>A todo list app made with VueJs.</p>
   </div>
 </template>
