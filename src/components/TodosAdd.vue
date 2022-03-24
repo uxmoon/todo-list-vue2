@@ -1,6 +1,6 @@
 <template>
   <div class="todo-add">
-    <form v-on:submit="handleSubmit">
+    <form v-on:submit="handleAdd">
       <input
         type="text"
         v-model="title"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 export default {
   name: "TodosAdd",
   data() {
@@ -22,11 +22,11 @@ export default {
     };
   },
   methods: {
-    handleSubmit(event) {
+    handleAdd(event) {
       event.preventDefault();
       // build new todo object
       const newTodo = {
-        id: uuidv4(),
+        // id: uuidv4(),
         title: this.title,
         completed: false,
       };
