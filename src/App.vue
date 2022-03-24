@@ -10,7 +10,7 @@
 import axios from "axios";
 import TodosList from "./components/TodosList";
 import TodosAdd from "./components/TodosAdd";
-import HeaderApp from "./components/layout/Header.vue"
+import HeaderApp from "./components/layout/Header.vue";
 
 export default {
   name: "App",
@@ -42,19 +42,30 @@ export default {
   },
   methods: {
     handleDelete(id) {
-      this.todos = this.todos.filter((todo) => todo.id !== id)
+      this.todos = this.todos.filter((todo) => todo.id !== id);
     },
     handleAdd(newTodo) {
-      this.todos = [...this.todos, newTodo]
-    }
+      // jsonplaceholder gives you an id
+      const { title, completed } = newTodo;
+      // post request and send data
+      axios
+        .post("https://jsonplaceholder.typicode.com/todos", {
+          title,
+          completed,
+        })
+        .then((res) => (this.todos = [...this.todos, res.data]))
+        .catch((err) => console.log(err));
+      // this.todos = [...this.todos, newTodo]
+    },
   },
   // lifecycle hook
   created() {
-    axios.get("https://jsonplaceholder.typicode.com/todos?_limit=4")
-    // .then(res => console.log(res))
-    .then(res => this.todos = res.data)
-    .catch(err => console.log(err))
-  }
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos?_limit=4")
+      // .then(res => console.log(res))
+      .then((res) => (this.todos = res.data))
+      .catch((err) => console.log(err));
+  },
 };
 </script>
 
